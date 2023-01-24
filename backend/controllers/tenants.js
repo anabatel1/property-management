@@ -45,13 +45,12 @@ tenantsRouter.post('/', async (request, response) => {
 
   // A listing can have only one tenant (for now)
   if (listing) {
-    listing.tenant = savedListing._id
+    listing.tenant = savedListing.id
 
-    await tenant.save()
+    await listing.save()
   }
 
-  const newlyAddedTenant = await Listing.findById(savedListing.id)
-    .populate('user', {  username: 1, name: 1, id: 1 })
+  const newlyAddedTenant = await Listing.findById(listing.id)
     .populate('tenant')
 
   response.json(newlyAddedTenant)

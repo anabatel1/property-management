@@ -51,8 +51,6 @@ const listingExtractor = async (request, response, next) => {
 
   const listing = await Listing.findById(request.body.listingId)
 
-  console.log('listing', listing)
-
   request.listing = listing
 
   next()

@@ -19,11 +19,11 @@ const tenantSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-  // A tenant can be renting out multiple apartments
-  listing: [{
+  // A tenant can be renting out only one apartment (for now)
+  listing: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Listing'
-  }]
+  }
 })
 
 tenantSchema.set('toJSON', {
