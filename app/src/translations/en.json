@@ -1,0 +1,103 @@
+{
+    "listingForm": {
+        "createNew": "Create a new listing",
+        "confirmAddress": "I confirm that the listed address is correct",
+        "listingTitle": "Listing Title",
+        "placeholder": {
+            "title": "Big apartment in Copenhagen V",
+            "size": "Size (m2)",
+            "rooms": "Number of rooms"
+        },
+        "validation": {
+            "acceptAddress": "You must confirm the address",
+            "required": "Required",
+            "minChars": "Must be {{chars}} characters or more",
+            "addressNotSelected": "No address selected",
+            "invalidType": "Invalid Listing Type"
+        },
+        "create": "Create",
+        "addressNotFound": "No address found. Please recheck your input or make the address more specific.",
+        "addressWentWrong": "Something went wrong while searching for the address",
+        "addressSearch": "Searching for the address...",
+        "error": "Couldn't create the listing",
+        "success": "Listing successfully created"
+    },
+    "adresseringsvejnavn": "Address path",
+    "welcome": "Welcome {{username}}",
+    "noListingFound": "No properties found",
+    "dør": "Door",
+    "etage": "Floor",
+    "husnr": "House number",
+    "postnr": "Postal code",
+    "postnrnavn": "Postal code name",
+    "vejnavn": "Street name",
+    "streetName": "Street name",
+    "houseNumber": "House number",
+    "floor": "Floor",
+    "door": "Door",
+    "postalCode": "Postal code",
+    "postalCodeName": "Postal code name",
+    "type": {
+        "apartment": "apartment",
+        "room": "room",
+        "house": "house",
+        "townhouse": "townhouse"
+    },
+    "listingType": "Listing Type",
+    "address": "Address",
+    "login": {
+        "form": {
+            "login": "Login",
+            "username": "Username",
+            "password": "Password",
+            "loginButton": "Login",
+            "validation": {
+            "minChars": "Must be {{chars}} characters or more",
+            "passwordNotEntered": "Must enter a password",
+            "required": "Required"
+            }
+        },
+        "loggingIn": "Logging you in...",
+        "tokenExpired": "Token expired. Please log in again.",
+        "loginSuccess": "Successfully logged in",
+        "loginFail": "An error occurred while logging in"
+    },
+    "listingDetails": {
+        "confirmText": "Are you sure you want to delete \"{{title}}\"?",
+        "propertyNotFound": "Property with this ID wasn\"t found",
+        "delete": "Delete",
+        "confirmation": "Confirmation",
+        "deleteSuccess": "Property was deleted successfully",
+        "deleteFail": "Property could not be deleted. Please try again later",
+        "map": {
+            "notFound": "Map couldn't be loaded",
+            "loading": "Loading the map...",
+            "coordinatesFail": "Coordinates not found",
+            "coordinatesLoading": "Loading coordinates"
+        }
+    },
+    "propertyNotFound": "Property with this ID couldn\"t be found",
+    "yes": "Yes",
+    "no": "No",
+    "addProperty": "Add a property",
+    "rooms": "Rooms",
+    "size": "Size",
+    "addressDetails": "Address Details",
+    "propertyManagement": "Property Management",
+    "addListing": "New listing",
+    "portfolio": "Portfolio",
+    "logOut": "Log Out",
+    "filterByType": "Filter by type",
+    "TenantForm": {
+        "validation": {
+            "tenantNameRequired": "Tenant name required"
+        },
+        "createNew": "Add a tenant",
+        "tenantName": "Tenant name",
+        "placeholder": {
+            "name": "Name",
+            "price": "Price"
+        },
+        "add": "Add a tenant"
+    }
+}

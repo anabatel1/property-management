@@ -1,0 +1,91 @@
+{
+    "listingForm": {
+        "createNew": "Opret en ny bolig",
+        "confirmAddress": "Jeg bekræfter, at den angivne adresse er korrekt",
+        "listingTitle": "Titel",
+        "placeholder": {
+            "title": "Stor lejlighed i København V",
+            "size": "Størrelse (m2)",
+            "rooms": "Antal værelser"
+        },
+        "validation": {
+            "acceptAddress": "Du skal bekræfte adressen",
+            "required": "Nødvendig",
+            "minChars": "Skal være på {{chars}} tegn eller mere",
+            "addressNotSelected": "Ingen adresse valgt",
+            "invalidType": "Ugyldig bolig type"
+        },
+        "create": "Opret",
+        "addressNotFound": "Ingen adresse fundet. Tjek venligst dit input igen, eller gør adressen mere specifik.",
+        "addressWentWrong": "Noget gik galt under søgningen efter adressen",
+        "addressSearch": "Søger efter adressen...",
+        "error": "Fortegnelsen kunne ikke oprettes",
+        "success": "Fortegnelsen er oprettet!"
+    },
+    "welcome": "Velkommen {{username}}",
+    "noListingFound": "Ingen ejendomme fundet",
+    "adresseringsvejnavn": "Adresseringsvejnavn",
+    "dør": "Dør",
+    "etage": "Etage",
+    "husnr": "Husnummer",
+    "postnr": "Postnummer",
+    "postnrnavn": "Postnummer navn",
+    "vejnavn": "Vejnavn",
+    "streetName": "Vejnavn",
+    "houseNumber": "Husnummer",
+    "floor": "Etage",
+    "door": "Dør",
+    "postalCode": "Postnummer",
+    "postalCodeName": "Postnummer navn",
+    "type": {
+        "apartment": "lejlighed",
+        "room": "værelse",
+        "house": "hus",
+        "townhouse": "rækkehus"
+    },
+    "listingType": "Boligtype",
+    "address": "Adress",
+    "login": {
+        "form": {
+        "login": "Login",
+        "username": "Brugernavn",
+        "password": "Adgangskode",
+        "loginButton": "Log på",
+        "validation": {
+            "minChars": "Skal være på {{chars}} tegn eller mere",
+            "passwordNotEntered": "Skal indtaste en adgangskode",
+            "required": "Nødvendig"
+        }
+        },
+        "loggingIn": "Logger dig ind...",
+        "tokenExpired": "Token er udløbet. Log venligst ind igen.",
+        "loginSuccess": "Log ind succes",
+        "loginFail": "Der opstod en fejl under login"
+    },
+    "listingDetails": {
+        "confirmText": "Er du sikker på, at du vil slette \"{{title}}\"?",
+        "propertyNotFound": "Ejendom med dette id blev ikke fundet",
+        "delete": "Slet",
+        "confirmation": "Bekræftelse",
+        "deleteSuccess": "Ejendommen blev slettet",
+        "deleteFail": "Ejendommen kunne ikke slettes. Prøv igen senere",
+        "map": {
+            "notFound": "Kort kunne ikke indlæses",
+            "loading": "Indlæser kortet...",
+            "coordinatesFail": "Koordinater blev ikke fundet",
+            "coordinatesLoading": "Indlæser koordinater"
+        }
+    },
+    "propertyNotFound": "Ejendom med dette ID kunne ikke findes",
+    "yes": "Ja",
+    "no": "Nej",
+    "addProperty": "Tilføj en ejendom",
+    "rooms": "Værelser",
+    "size": "Størrelse",
+    "addressDetails": "Adresseoplysninger",
+    "propertyManagement": "Ejendomsadministration",
+    "addListing": "Ny ejendom",
+    "portfolio": "Portefølje",
+    "logOut": "Log ud",
+    "filterByType": "Filtrer efter type"
+}
