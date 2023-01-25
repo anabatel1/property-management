@@ -52,7 +52,7 @@ const Listing = () => {
     data: listing,
   } = useQuery(
     ['listing', id],
-    () => services.getOneUserListing(id),
+    () => services.getOneUserListingWithTenant(id),
     {
       enabled: id?.length > 0
     }

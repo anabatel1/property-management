@@ -54,10 +54,10 @@ const ListingDetailsCard = ({ listing, handleDeleteButton }) => {
   const { t } = useTranslation();
 
   const tenant = {
-    name: listing?.tenant?.name || 'test name',
-    startDate: listing?.tenant?.startDate || new Date('03.11.2022.'),
-    endDate: listing?.tenant?.endDate || new Date('01.11.2023.'),
-    price: listing?.tenant?.price || 23444,
+    name: listing?.tenant?.name,
+    startDate: listing?.tenant?.startDate,
+    endDate: listing?.tenant?.endDate,
+    price: listing?.tenant?.price,
   };
 
   return (

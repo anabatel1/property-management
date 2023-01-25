@@ -94,10 +94,11 @@
         },
         "createNew": "Add a tenant",
         "tenantName": "Tenant name",
-        "placeholder": {
-            "name": "Name",
-            "price": "Price"
-        },
-        "add": "Add a tenant"
+        "name": "Name",
+        "price": "Price / month",
+        "contractStart": "Contract start date",
+        "contractEnd": "Contract end date",
+        "add": "Add a tenant",
+        "update": "Update tenant"
     }
 }

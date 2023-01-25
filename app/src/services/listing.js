@@ -13,12 +13,23 @@ const getAllUserListings = async () => {
   return data?.data;
 };
 
+const fetchOneListing = (id) => `${baseUrlListings}/${id}`;
+
 const getOneUserListing = async (id) => {
   const config = {
     headers: { Authorization: token() },
   };
 
-  const data = await axios.get(`${baseUrlListings}/${id}`, config);
+  const data = await axios.get(fetchOneListing(id), config);
+  return data?.data;
+};
+
+const getOneUserListingWithTenant = async (id) => {
+  const config = {
+    headers: { Authorization: token() },
+  };
+
+  const data = await axios.get(`${fetchOneListing(id)}?details[]=tenant`, config);
   return data?.data;
 };
 
@@ -55,6 +66,7 @@ const listingService = {
   createNewListing,
   updateUserListing,
   deleteUserListing,
+  getOneUserListingWithTenant,
 };
 
 export default listingService;

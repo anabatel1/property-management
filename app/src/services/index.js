@@ -13,6 +13,7 @@ const services = {
   updateUserListing: listingService.updateUserListing,
   deleteUserListing: listingService.deleteUserListing,
   createNewTenant: tenantService.createNewTenant,
+  getOneUserListingWithTenant: listingService.getOneUserListingWithTenant,
 };
 
 export default services;

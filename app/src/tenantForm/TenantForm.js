@@ -9,7 +9,6 @@ import { PropTypes } from 'prop-types';
 import services from '../services';
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -30,7 +29,6 @@ const defaultFormValues = {
 
 const TenantForm = ({ tenant, listingId }) => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
 
   const {
     handleSubmit,
@@ -48,9 +46,10 @@ const TenantForm = ({ tenant, listingId }) => {
   });
 
   useEffect(() => {
-    setValue('startDate', tenant.startDate);
-    setValue('endDate', tenant.endDate);
+    setValue('name', tenant.name);
     setValue('price', tenant.price);
+    setValue('startDate', new Date(tenant.startDate));
+    setValue('endDate', new Date(tenant.endDate));
     setValue('listingId', listingId);
   }, [tenant, listingId, setValue]);
 
@@ -70,9 +69,8 @@ const TenantForm = ({ tenant, listingId }) => {
     // Trigger a POST to save the new tenancy
     createNewTenantMutation.mutate(values, {
       onSuccess: (data) => {
-        // Invalidate query for a list of listings (return needed so it waits until the invalidation is done)
         queryClient.invalidateQueries(['listings']);
-        navigate(`/listing/${data.id}`);
+        queryClient.invalidateQueries(['listing', data.id]);
       },
       onError: (error) => handleOnError(error)
     });
@@ -93,7 +91,7 @@ const TenantForm = ({ tenant, listingId }) => {
               name="name"
               type="text"
               label={t('TenantForm.tenantName')}
-              placeholder={t('TenantForm.placeholder.name')}
+              placeholder={t('TenantForm.name')}
               errors={errors}
               schema={validationSchema(t)}
               register={register}
@@ -106,10 +104,11 @@ const TenantForm = ({ tenant, listingId }) => {
                 <InputNumber
                   id={field.name}
                   value={field.value}
-                  label={t('TenantForm.placeholder.price')}
+                  label={t('TenantForm.price')}
                   mode="currency"
                   currency="DKK"
                   locale="dk-DK"
+                  onChange={(e) => field.onChange(e.value)}
                 />
               )}
             />
@@ -146,7 +145,7 @@ const TenantForm = ({ tenant, listingId }) => {
 
             <input type="hidden" name="listingId" />
 
-            <button type="submit">{t('TenantForm.add')}</button>
+            <button type="submit">{tenant.name ? t('TenantForm.update') : t('TenantForm.add')}</button>
           </form>
         }
       </div>
@@ -156,8 +155,8 @@ const TenantForm = ({ tenant, listingId }) => {
 
 const Tenant = {
   name: PropTypes.string,
-  startDate: PropTypes.object,
-  endDate: PropTypes.object,
+  startDate: PropTypes.string,
+  endDate: PropTypes.string,
   price: PropTypes.number,
 };
 

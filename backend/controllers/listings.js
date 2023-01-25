@@ -8,7 +8,16 @@ listingsRouter.get('/', async (_request, response) => {
 })
 
 listingsRouter.get('/:id', async (request, response) => {
-  const listing = await Listing.findById(request.params.id).populate('user', {  username: 1, name: 1, id: 1 })
+  let listing = null
+
+  if (request.query?.details?.includes('tenant')) {
+    listing = await Listing.findById(request.params.id)
+      .populate('user', {  username: 1, name: 1, id: 1 })
+      .populate('tenant')
+  } else {
+    listing = await Listing.findById(request.params.id)
+      .populate('user', {  username: 1, name: 1, id: 1 })
+  }
 
   if (listing) {
     response.json(listing)
