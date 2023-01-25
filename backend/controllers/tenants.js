@@ -59,8 +59,6 @@ tenantsRouter.post('/', async (request, response) => {
 tenantsRouter.put('/:id', async (request, response) => {
   const body = request.body
 
-  console.log('body', body)
-
   const tenant = {
     name: body.name,
     price: body.price,
@@ -69,7 +67,6 @@ tenantsRouter.put('/:id', async (request, response) => {
   }
 
   const updatedListing = await Listing.findByIdAndUpdate(request.params.id, tenant, { new: true }).populate('user')
-  console.log('updatedListing', updatedListing)
   response.json(updatedListing)
 })
 

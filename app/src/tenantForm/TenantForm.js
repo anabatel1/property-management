@@ -7,6 +7,7 @@ import { Input } from '../common/forms';
 import { InputNumber } from 'primereact/inputnumber';
 import { PropTypes } from 'prop-types';
 import services from '../services';
+import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -61,24 +62,23 @@ const TenantForm = ({ tenant, listingId }) => {
     }
   });
 
+  const handleOnError = (error) => {
+    toast(`error: ${JSON.stringify(error)}`);
+  };
+
   const onSubmit = (values) => {
     // Trigger a POST to save the new tenancy
     createNewTenantMutation.mutate(values, {
       onSuccess: (data) => {
-        console.log('data', data);
         // Invalidate query for a list of listings (return needed so it waits until the invalidation is done)
         queryClient.invalidateQueries(['listings']);
         navigate(`/listing/${data.id}`);
       },
-      onError: (err) => {
-        console.log('err, tenant adding API failed', err);
-      }
+      onError: (error) => handleOnError(error)
     });
   };
 
-  const onError = (data) => {
-    console.log('on error, form submission failed???', data);
-  };
+  const onError = (error) => handleOnError(error);
 
   return (
     <>
