@@ -1,6 +1,7 @@
 import { ContentWrapper } from '../common/ContentWrapper';
 import LanguageSelector from './LanguageSelector';
 import LoggedInLinks from './LoggedInLinks';
+import Logo from '../common/Logo';
 import { PropTypes } from 'prop-types';
 import styled from 'styled-components';
 
@@ -16,7 +17,7 @@ const HeaderWrapper = styled.header`
     flex-direction: column;
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
 
     @media (${props => props.theme.device.md}) {
       flex-direction: row;
@@ -28,6 +29,7 @@ const Header = ({ username }) => {
   return(
     <HeaderWrapper>
       <ContentWrapper>
+        <Logo height="3rem"/>
         {username && <LoggedInLinks username={username} />}
         <LanguageSelector />
       </ContentWrapper>

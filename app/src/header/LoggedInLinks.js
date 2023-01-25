@@ -14,7 +14,7 @@ const LoggedInLinks = ({ username }) => {
 
   return (
     <>
-      <h3>{t('welcome', { username })}</h3>
+      <h5>{t('welcome', { username })}</h5>
       <StyledNavLink to="/">
         {t('portfolio')}
       </StyledNavLink>
