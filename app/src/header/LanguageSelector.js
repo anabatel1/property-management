@@ -9,11 +9,9 @@ const languages = {
 };
 
 const LanguageSelect = styled(StyledSelect)`
-  @media (${props => props.theme.device.sm}) {
-    width: 40%;
-  }
+  width: 40%;
 
-  @media (${props => props.theme.device.md}) {
+  @media ${props => props.theme.device.md} {
     width: 20%;
   }
 `;

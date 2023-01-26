@@ -47,15 +47,16 @@
     "address": "Adress",
     "login": {
         "form": {
-        "login": "Login",
-        "username": "Brugernavn",
-        "password": "Adgangskode",
-        "loginButton": "Log på",
-        "validation": {
-            "minChars": "Skal være på {{chars}} tegn eller mere",
-            "passwordNotEntered": "Skal indtaste en adgangskode",
-            "required": "Nødvendig"
-        }
+            "welcomeBack": "Velkommen tilbage!",
+            "username": "Brugernavn",
+            "password": "Adgangskode",
+            "loginButton": "Log på",
+            "validation": {
+                "minChars": "Skal være på {{chars}} tegn eller mere",
+                "passwordNotEntered": "Skal indtaste en adgangskode",
+                "required": "Nødvendig"
+            },
+            "introText": "Log ind for at se og redigere alle dine ejendomme og respektive lejere ét sted"
         },
         "loggingIn": "Logger dig ind...",
         "tokenExpired": "Token er udløbet. Log venligst ind igen.",

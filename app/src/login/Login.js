@@ -1,109 +1,62 @@
-import * as Yup from 'yup';
-import { Input, StyledButton } from '../common/forms';
-import FeedbackAnimation from '../common/animations';
-import { PropTypes } from 'prop-types';
-import services from '../services';
-import { setUser } from '../reducers/userReducer';
-import { toast } from 'react-toastify';
-import { useDispatch } from 'react-redux';
-import { useForm } from 'react-hook-form';
-import { useMutation } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
+import LoginForm from './LoginForm';
+import backgroundImage from '../assets/intro-bg.jpg';
+import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { yupResolver } from '@hookform/resolvers/yup';
 
-const validationSchema = (t) => Yup.object({
-  username: Yup.string()
-    .min(5, t('login.form.validation.minChars', { chars: 5 }))
-    .required(t('login.form.validation.required')),
-  password: Yup.string()
-    .required(t('login.form.validation.passwordNotEntered')),
-});
+const LoginPageWrapper = styled.section`
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url(${backgroundImage});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 
-const defaultFormValues = {
-  username: '',
-  password: ''
-};
+  // Make the image full height
+  margin: -1rem 0;
+
+  @media ${props => props.theme.device.md} {
+  }
+`;
+
+const LoginWrapper = styled.section`
+  background: ${props => props.theme.colors.success}ea;
+  margin: 0 1rem;
+  padding: 2rem;
+  border-radius: 10px;
+
+  input, button {
+    width: 100%;
+  }
+
+  @media ${props => props.theme.device.md} {
+    width: 40%;
+  }
+`;
+
+const Description = styled.div`
+  color: ${props => props.theme.colors.darkPastelGreen};
+  margin-top: 0.25rem;
+  line-height: 1.2rem;
+`;
 
 const Login = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const {
-    handleSubmit,
-    register,
-    formState: {
-      errors,
-    },
-  } = useForm({
-    mode: 'onSubmit',
-    delayError: 500,
-    defaultValues: defaultFormValues,
-    resolver: yupResolver(validationSchema(t))
-  });
-
-  const onSubmit = (values) => {
-    loginUserMutation.mutate(values, {
-      onSuccess: (data) => {
-        toast(t('login.loginSuccess'));
-        window.localStorage.setItem('loggedInUser', JSON.stringify(data));
-        dispatch(setUser(data));
-        navigate('/');
-      },
-      onError: (error) => {
-        toast(error?.response?.data?.error || t('login.loginFail'));
-      }
-    });
-  };
-
-  const onError = (error) => {
-    toast(error?.response?.data?.error || t('login.loginFail'));
-  };
-
-  const loginUserMutation = useMutation({
-    mutationFn: ({ username, password }) => {
-      return services.login({ username, password });
-    }
-  });
 
   return (
-    <>
-      <h1>{t('login.form.login')}</h1>
-      <form onSubmit={handleSubmit(onSubmit, onError)}>
-        {loginUserMutation.isLoading
-          ?
-          <FeedbackAnimation
-            feedbackType="loading"
-            feedbackText={t('login.loggingIn')}
-            animationWidth="20rem" />
-          :
-          <>
-            <Input
-              name="username"
-              label={t('login.form.username')}
-              errors={errors}
-              schema={validationSchema(t)}
-              register={register}
-            />
-            <Input
-              name="password"
-              type="password"
-              label={t('login.form.password')}
-              errors={errors}
-              schema={validationSchema(t)}
-              register={register}
-            />
-            <StyledButton type="submit">{t('login.form.loginButton')}</StyledButton>
-          </>
-        }
-      </form>
-    </>
+    <LoginPageWrapper>
+      <LoginWrapper>
+        <h1>{t('login.form.welcomeBack')}</h1>
+        <Description>
+          {t('login.form.introText')}
+        </Description>
+        <LoginForm />
+      </LoginWrapper>
+    </LoginPageWrapper>
   );
-};
-
-Login.propTypes = {
-  onLogin: PropTypes.func
 };
 
 export default Login;

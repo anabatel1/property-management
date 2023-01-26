@@ -64,18 +64,18 @@ function App() {
           theme="light"
         />
         <Header username={user?.username} />
-        <ContentWrapper>
-          {!(user?.username) ?
-            <Login />
-            :
+        {!(user?.username) ?
+          <Login />
+          :
+          <ContentWrapper>
             <Routes>
               <Route path="/listing/:id" element={<Listing />} />
               <Route path="/" element={<Listings />} />
               {!(user?.username) && <Route path="/login" element={<Login />} />}
               <Route path="/add" element={<ListingForm />} />
             </Routes>
-          }
-        </ContentWrapper>
+          </ContentWrapper>
+        }
         <Footer />
       </QueryClientProvider>
     </Theme>

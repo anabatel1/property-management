@@ -3,7 +3,7 @@ import { css } from 'styled-components';
 export const InputStyle = (colors) => css`
     :root {
         --text-decoration-color: ${colors.gray400};
-        --text-color: ${colors.gray800};
+        --text-color: ${colors.superPastelGreen};
         --focus-ring-color: ${colors.green500};
     }
 
@@ -21,7 +21,7 @@ export const InputStyle = (colors) => css`
         font-size: 1rem;
         border: 2px solid ${colors.gray200};
         background-color: ${colors.gray100};
-        color: ${colors.gray800};
+        color: ${colors.superPastelGreen};
         border-radius: 10px;
         -webkit-appearance: none;
         -moz-appearance: none;
@@ -174,7 +174,7 @@ export const InputStyle = (colors) => css`
         input[type="button"]:hover,
         button:hover {
             cursor: pointer;
-            background-color: ${colors.gray800};
+            background-color: ${colors.superPastelGreen};
         }
     }
 

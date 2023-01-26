@@ -3,6 +3,7 @@ export const lightYellow = '#fcfcfa';
 export const pastelGreen = '#CCD5AE';
 export const darkPastelGreen = '#525546';
 export const brightPastelGreen = '#9BB23F';
+export const superPastelGreen = '#32342A';
 export const creamGreen = '#E9EDC9';
 export const cornsilk = '#FEFAE0';
 export const blanchedAlmond = '#FAEDCD';
@@ -44,6 +45,7 @@ const colors = {
   lightYellow,
   pastelGreen,
   darkPastelGreen,
+  superPastelGreen,
   creamGreen,
   cornsilk,
   blanchedAlmond,

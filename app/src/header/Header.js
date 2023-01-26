@@ -12,14 +12,13 @@ const HeaderWrapper = styled.header`
   background: ${props => props.theme.colors.success};
   margin-bottom: 1rem;
 
-  
   ${ContentWrapper} {
     flex-direction: column;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    @media (${props => props.theme.device.md}) {
+    @media ${props => props.theme.device.md} {
       flex-direction: row;
     }
   }

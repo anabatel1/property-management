@@ -20,6 +20,7 @@ const GlobalStyle = createGlobalStyle`
   h4,
   h5,
   h6 {
+    color: ${props => props.theme.colors.superPastelGreen};
     @font-face {
         font-family: 'Quicksand';
         src: url(${Quicksand});
@@ -29,6 +30,7 @@ const GlobalStyle = createGlobalStyle`
 
   label {
     margin-top: 1rem;
+    margin-bottom: 0.25rem;
   }
 
   label.checkbox {
@@ -38,14 +40,15 @@ const GlobalStyle = createGlobalStyle`
   button[type="submit"] {
     margin-top: 1rem;
   }
-
-  body {
-    background-color: ${props => props.theme.colors.lightYellow};
-  }
   
   body,
   #root {
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background-color: ${props => props.theme.colors.lightYellow};
+    color: ${props => props.theme.colors.superPastelGreen};
   }
 
   footer {
@@ -73,6 +76,7 @@ const theme = {
     creamGreen: colors.creamGreen,
     pastelGreen: colors.pastelGreen,
     darkPastelGreen: colors.darkPastelGreen,
+    superPastelGreen: colors.superPastelGreen,
     brightPastelGreen: colors.brightPastelGreen,
     darkerTanCrayola: colors.darkerTanCrayola,
   },

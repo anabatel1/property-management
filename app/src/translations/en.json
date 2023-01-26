@@ -47,15 +47,16 @@
     "address": "Address",
     "login": {
         "form": {
-            "login": "Login",
+            "welcomeBack": "Welcome back!",
             "username": "Username",
             "password": "Password",
             "loginButton": "Login",
             "validation": {
-            "minChars": "Must be {{chars}} characters or more",
-            "passwordNotEntered": "Must enter a password",
-            "required": "Required"
-            }
+                "minChars": "Must be {{chars}} characters or more",
+                "passwordNotEntered": "Must enter a password",
+                "required": "Required"
+            },
+            "introText": "Log in to see and edit all your properties and respective tenants in one place"
         },
         "loggingIn": "Logging you in...",
         "tokenExpired": "Token expired. Please log in again.",

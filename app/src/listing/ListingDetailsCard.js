@@ -15,7 +15,7 @@ const ListingDetails = styled.div`
     margin-top: 1rem;
   }
 
-  @media (${props => props.theme.device.md}) {
+  @media ${props => props.theme.device.md} {
     padding: 5rem;
   }
 `;
@@ -30,7 +30,7 @@ const FlexWrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
 
-  @media (${props => props.theme.device.md}) {
+  @media ${props => props.theme.device.md} {
     flex-direction: row;
   }
 

@@ -23,7 +23,7 @@ const LinkStyle = () => css`
     border-bottom: 3px ${props => props.theme.colors.darkerTanCrayola} solid;
   }
 
-  @media (${props => props.theme.device.md}) {
+  @media ${props => props.theme.device.md} {
     line-height: 3rem;
   }
 `;

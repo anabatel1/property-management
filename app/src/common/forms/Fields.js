@@ -118,12 +118,9 @@ SelectHook.displayName = 'Select';
 
 export const StyledSelect = styled.select`
   color: ${props => props.theme.colors.successBright};
+  width: 100%;
 
-  @media (${props => props.theme.device.sm}) {
-    width: 100%;
-  }
-
-  @media (${props => props.theme.device.md}) {
+  @media ${props => props.theme.device.md} {
     width: 45%;
   }
 `;
@@ -143,11 +140,11 @@ export const StyledLabel = styled.label`
 `;
 
 export const StyledInput = styled.input`
-  @media (${props => props.theme.device.sm}) {
+  @media ${props => props.theme.device.sm} {
     width: 100%;
   }
 
-  @media (${props => props.theme.device.md}) {
+  @media ${props => props.theme.device.md} {
     width: 45%;
   }
 
@@ -161,11 +158,11 @@ export const StyledInput = styled.input`
 export const StyledButton = styled.button`
   display: block;
 
-  @media (${props => props.theme.device.sm}) {
+  @media ${props => props.theme.device.sm} {
     width: 100%;
   }
 
-  @media (${props => props.theme.device.md}) {
+  @media ${props => props.theme.device.md} {
     width: 45%;
   }
 `;
