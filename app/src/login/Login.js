@@ -14,12 +14,8 @@ const LoginPageWrapper = styled.section`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-
   // Make the image full height
   margin: -1rem 0;
-
-  @media ${props => props.theme.device.md} {
-  }
 `;
 
 const LoginWrapper = styled.section`

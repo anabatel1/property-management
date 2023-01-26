@@ -60,8 +60,11 @@ const LoginForm = () => {
     toast(error?.response?.data?.error || t('login.loginFail'));
   };
 
+  const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
   const loginUserMutation = useMutation({
-    mutationFn: ({ username, password }) => {
+    mutationFn: async({ username, password }) => {
+      await sleep(30000);
       return services.login({ username, password });
     }
   });
@@ -73,7 +76,7 @@ const LoginForm = () => {
         <FeedbackAnimation
           feedbackType="loading"
           feedbackText={t('login.loggingIn')}
-          animationWidth="20rem" />
+          animationWidth="100%" />
         :
         <>
           <Input
