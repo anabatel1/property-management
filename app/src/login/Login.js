@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 
 const LoginPageWrapper = styled.section`
-  position: relative;
   display: flex;
   flex: 1;
   flex-direction: column;

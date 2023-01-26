@@ -4,8 +4,17 @@ import StyledNavLink from '../navigation';
 import { handleLogout } from '../login/hooks';
 import { redirect } from 'react-router-dom';
 import { setUser } from '../reducers/userReducer';
+import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+
+const UsernameComponent = styled.h4`
+  max-width: 100%;
+
+  @media ${props => props.theme.device.md} {
+    max-width: 10%;
+  }
+`;
 
 const LoggedInLinks = ({ username }) => {
   const { t } = useTranslation();
@@ -14,7 +23,7 @@ const LoggedInLinks = ({ username }) => {
 
   return (
     <>
-      <h5>{t('welcome', { username })}</h5>
+      <UsernameComponent>{t('welcome', { username })}</UsernameComponent>
       <StyledNavLink to="/">
         {t('portfolio')}
       </StyledNavLink>
