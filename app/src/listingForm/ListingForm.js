@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { CheckboxHook, Input, SelectHook } from '../common/forms';
+import { Checkbox, Input, Select } from '../common/forms';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import AddressInfo from './AddressInfo';
 import FeedbackAnimation from '../common/animations';
@@ -131,7 +131,7 @@ const ListingForm = () => {
           <input type="hidden" name="addressId" />
           <input type="hidden" name="addressDetails" />
 
-          <SelectHook
+          <Select
             name="type"
             label={t('listingType')}
             errors={errors}
@@ -142,7 +142,7 @@ const ListingForm = () => {
             {Object.keys(LISTING_TYPES).map((type) => (
               <option value={type} key={type}>{t(`type.${type}`)}</option>
             ))}
-          </SelectHook>
+          </Select>
 
           <Input
             name="size"
@@ -162,7 +162,7 @@ const ListingForm = () => {
             register={register}
           />
 
-          <CheckboxHook
+          <Checkbox
             name="acceptedAddress"
             id="accepted"
             label={t('listingForm.placeholder.rooms')}
@@ -171,7 +171,7 @@ const ListingForm = () => {
             register={register}
           >
             {t('listingForm.confirmAddress')}
-          </CheckboxHook>
+          </Checkbox>
 
           <button type="submit">{t('listingForm.create')}</button>
         </>

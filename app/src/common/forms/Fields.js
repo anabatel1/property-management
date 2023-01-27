@@ -53,7 +53,7 @@ Input.propTypes = {
 // Used for debugging
 Input.displayName = 'Input';
 
-export const CheckboxHook = forwardRef(function({
+export const Checkbox = forwardRef(function({
   label, name, id, schema, errors, register, children, ...props
 }, ref) {
   return (
@@ -82,10 +82,10 @@ export const CheckboxHook = forwardRef(function({
   );
 });
 
-CheckboxHook.propTypes = ReactHookFormPropTypes;
-CheckboxHook.displayName = 'Checkbox';
+Checkbox.propTypes = ReactHookFormPropTypes;
+Checkbox.displayName = 'Checkbox';
 
-export const SelectHook = forwardRef(function({
+export const Select = forwardRef(function({
   label, name, id, type = 'text', schema, errors, register, ...props
 }, ref) {
   return (
@@ -110,11 +110,11 @@ export const SelectHook = forwardRef(function({
     </>
   );
 });
-SelectHook.propTypes = {
+Select.propTypes = {
   ...ReactHookFormPropTypes,
   type: PropTypes.string
 };
-SelectHook.displayName = 'Select';
+Select.displayName = 'Select';
 
 export const StyledSelect = styled.select`
   color: ${props => props.theme.colors.successBright};
