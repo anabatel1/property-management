@@ -64,7 +64,8 @@ const LoginForm = () => {
 
   const loginUserMutation = useMutation({
     mutationFn: async({ username, password }) => {
-      await sleep(30000);
+      // Sleep so you can see the login animation
+      await sleep(300);
       return services.login({ username, password });
     }
   });
