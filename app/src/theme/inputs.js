@@ -212,4 +212,20 @@ export const InputStyle = (colors) => css`
     button[type="reset"]:hover {
         background-color: ${colors.gray400};
     }
+
+    // Override primefaces css because the free version doesn't allow for custom css
+    .p-inputtext {
+        &:enabled:hover {
+            border-color: ${colors.green500};
+        }
+        &:enabled:focus {
+            outline: 0 none;
+            outline-offset: 0;
+            box-shadow: none;
+            border-color: ${colors.green500};
+        }
+        &.p-invalid.p-component {
+            border-color: ${colors.red600};;
+        }
+    }
 `;

@@ -85,16 +85,18 @@ const ListingForm = () => {
 
   const onSubmit = (data) => {
     // Trigger a POST to save the new tenancy
-    createNewListingMutation.mutate(data, { onSuccess: (data) => {
-      toast(t('listingForm.success'));
-      if (isSubmitSuccessful) {
-        reset(defaultFormValues);
-      }
+    createNewListingMutation.mutate(data, {
+      onSuccess: async (data) => {
+        toast(t('listingForm.success'));
+        if (isSubmitSuccessful) {
+          reset(defaultFormValues);
+        }
 
-      // Invalidate query for a list of listings (return needed so it waits until the invalidation is done)
-      queryClient.invalidateQueries(['listings']);
-      navigate(`/listing/${data.id}`);
-    } });
+        // Invalidate query for a list of listings (return needed so it waits until the invalidation is done)
+        await queryClient.invalidateQueries(['listings']);
+        navigate(`/listing/${data.id}`);
+      }
+    });
   };
 
   const onError = () => {

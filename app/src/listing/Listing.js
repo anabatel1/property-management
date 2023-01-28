@@ -25,10 +25,10 @@ const Listing = () => {
   });
 
   const confirmDelete = () => deleteListingMutation.mutate(id, {
-    onSuccess: () => {
+    onSuccess: async () => {
       toast(t('listingDetails.deleteSuccess'));
       // Invalidate query for a list of listings
-      queryClient.invalidateQueries(['listings']);
+      await queryClient.invalidateQueries(['listings']);
       navigate('/');
     },
     onError: () => {
@@ -53,9 +53,6 @@ const Listing = () => {
   } = useQuery(
     ['listing', id],
     () => services.getOneUserListingWithTenant(id),
-    {
-      enabled: id?.length > 0
-    }
   );
 
   if (isLoading) {

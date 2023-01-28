@@ -63,7 +63,7 @@ const theme = {
   colors: {
     success: colors.pastelGreen,
     successDark: colors.darkPastelGreen,
-    successBright: colors.brightastelGreen,
+    successBright: colors.brightPastelGreen,
     loading: colors.cornsilk,
     error: colors.superTanCrayola,
     errorBright: colors.red,

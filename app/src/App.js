@@ -1,6 +1,7 @@
 import 'primereact/resources/themes/saga-green/theme.css';
 import 'primereact/resources/primereact.css';
 import 'react-toastify/dist/ReactToastify.css';
+import 'primeicons/primeicons.css';
 import { MutationCache, QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Route, Routes, redirect } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';

@@ -1,6 +1,9 @@
+import { forwardRef, useEffect } from 'react';
+import { Controller } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
+import { Calendar as PrimeReactCalendar } from 'primereact/calendar';
+import { InputNumber as PrimeReactInputNumber } from 'primereact/inputnumber';
 import { PropTypes } from 'prop-types';
-import { forwardRef } from 'react';
 import get from 'lodash.get';
 import styled from 'styled-components';
 
@@ -116,8 +119,91 @@ Select.propTypes = {
 };
 Select.displayName = 'Select';
 
+export const Calendar = ({
+  label, name, id, schema, errors, control, initialValue, setValue, ...props
+}) => {
+  useEffect(() => {
+    setValue(name, new Date(initialValue));
+  }, [initialValue, setValue, name]);
+
+  return (
+    <>
+      <StyledLabel htmlFor={id || name}>{label} {isRequired(schema, name) && '*'}</StyledLabel>
+      <Controller
+        name={name}
+        control={control}
+        label={label}
+        render={({ field }) => (
+          <PrimeReactCalendar
+            id={field.name}
+            value={field.value}
+            dateFormat="dd.mm.yy."
+            mask="01.01.2023."
+            touchUI
+            aria-invalid={hasErrorMessages(errors, name)}
+            onChange={(e) => field.onChange(e.value)}
+            {...props}
+          />
+        )}
+      />
+      <ErrorMessage
+        errors={errors}
+        name={name}
+        render={({ message }) => (
+          <StyledErrorMessage>{message}</StyledErrorMessage>
+        )}
+      />
+    </>
+  );};
+Calendar.propTypes = {
+  ...ReactHookFormPropTypes,
+  type: PropTypes.string
+};
+Calendar.displayName = 'Calendar';
+
+export const PriceInput = ({
+  label, name, id, schema, errors, control, initialValue, setValue, ...props
+}) => {
+  useEffect(() => {
+    setValue(name, initialValue);
+  }, [initialValue, setValue, name]);
+
+  return (
+    <>
+      <StyledLabel htmlFor={id || name}>{label} {isRequired(schema, name) && '*'}</StyledLabel>
+      <Controller
+        name={name}
+        control={control}
+        label={label}
+        render={({ field }) => (
+          <PrimeReactInputNumber
+            id={field.name}
+            value={field.value}
+            mode="currency"
+            currency="DKK"
+            locale="dk-DK"
+            aria-invalid={hasErrorMessages(errors, name)}
+            onChange={(e) => field.onChange(e.value)}
+            {...props}
+          />
+        )}
+      />
+      <ErrorMessage
+        errors={errors}
+        name={name}
+        render={({ message }) => (
+          <StyledErrorMessage>{message}</StyledErrorMessage>
+        )}
+      />
+    </>
+  );};
+PriceInput.propTypes = {
+  ...ReactHookFormPropTypes,
+  type: PropTypes.string
+};
+PriceInput.displayName = 'PriceInput';
+
 export const StyledSelect = styled.select`
-  color: ${props => props.theme.colors.successBright};
   width: 100%;
 
   @media ${props => props.theme.device.md} {

@@ -1,3 +1,4 @@
+import ListingDetailsAddress from './ListingDetailsAddress';
 import ListingDetailsMap from './ListingDetailsMap';
 import { PropTypes } from 'prop-types';
 import TenantForm from '../tenantForm';
@@ -5,7 +6,7 @@ import { listingColors } from '../common/listing/colors';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 
-const ListingDetails = styled.div`
+const ListingDetailsWrapper = styled.div`
   padding: 1rem;
   border-radius: 10px;
 
@@ -23,7 +24,6 @@ const ListingDetails = styled.div`
 const ListingDetailsTitle = styled.h2`
   color: ${props => props.theme.colors.error};
 `;
-
 
 const FlexWrapper = styled.div`
   display: flex;
@@ -53,37 +53,18 @@ const ListingHeader = styled.div`
 const ListingDetailsCard = ({ listing, handleDeleteButton }) => {
   const { t } = useTranslation();
 
-  const tenant = {
-    name: listing?.tenant?.name,
-    startDate: listing?.tenant?.startDate,
-    endDate: listing?.tenant?.endDate,
-    price: listing?.tenant?.price,
-  };
-
   return (
-    <ListingDetails className={listing.type}>
+    <ListingDetailsWrapper className={listing.type}>
       <ListingHeader>
         <ListingDetailsTitle>{listing.title}</ListingDetailsTitle>
         <button onClick={handleDeleteButton}>{t('listingDetails.delete')}</button>
       </ListingHeader>
-      <div className='mt-1'>
-        <div>{listing.rooms} {t('rooms')}</div>
-        <div>{listing.size}m<sup>2</sup></div>
-      </div>
       <FlexWrapper>
-        <div>
-          <h3>{t('addressDetails')}</h3>
-          <div>{t('streetName')}: {listing?.addressDetails?.streetName || '--'}</div>
-          <div>{t('houseNumber')}: {listing?.addressDetails?.houseNumber || '--'}</div>
-          <div>{t('floor')}: {listing?.addressDetails?.floor || '--'}</div>
-          <div>{t('door')}: {listing?.addressDetails?.door || '--'}</div>
-          <div>{t('postalCode')}: {listing?.addressDetails?.postalCode || '--'}</div>
-          <div>{t('postalCodeName')}: {listing?.addressDetails?.postalCodeName || '--'}</div>
-        </div>
+        <ListingDetailsAddress listing={listing} />
         <ListingDetailsMap addressId={listing?.addressId} />
       </FlexWrapper>
-      <TenantForm tenant={tenant} listingId={listing?.id} />
-    </ListingDetails>
+      <TenantForm listingId={listing?.id} />
+    </ListingDetailsWrapper>
   );
 };
 
