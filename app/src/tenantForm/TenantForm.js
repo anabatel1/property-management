@@ -1,12 +1,12 @@
 import * as Yup from 'yup';
 import { Calendar, Input, PriceInput } from '../common/forms';
+import { useEffect, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import FeedbackAnimation from '../common/animations';
 import { PropTypes } from 'prop-types';
 import services from '../services';
 import styled from 'styled-components';
 import { toast } from 'react-toastify';
-import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -44,9 +44,9 @@ const FormWrapper = styled.form`
 const validationSchema = (t) => Yup.object({
   name: Yup.string()
     .required(t('TenantForm.validation.tenantNameRequired')),
-  price: Yup.number().min(1000, 'Must be minimum 1000'),
-  startDate: Yup.date().required('date required'),
-  endDate: Yup.date().required('date required'),
+  price: Yup.number().nullable(),
+  startDate: Yup.date().nullable(),
+  endDate: Yup.date().nullable(),
 });
 
 const defaultFormValues = {
@@ -59,6 +59,10 @@ const defaultFormValues = {
 const TenantForm = ({ listingId }) => {
   const { t } = useTranslation();
 
+  const [tenant, setTenant] = useState(defaultFormValues);
+
+  const queryClient = useQueryClient();
+
   const {
     isLoading,
     isError,
@@ -68,17 +72,23 @@ const TenantForm = ({ listingId }) => {
     () => services.getOneUserListingWithTenant(listingId),
   );
 
-  const tenant = data?.tenant;
+  useEffect(() => {
+    if (!data || !data.tenant) {
+      return;
+    }
+
+    setTenant(data.tenant);
+  }, [data]);
 
   const {
     handleSubmit,
     register,
-    getValues,
     setValue,
     control,
     formState: {
       errors,
       isValid,
+      isDirty,
     },
   } = useForm({
     mode: 'onChange',
@@ -87,21 +97,11 @@ const TenantForm = ({ listingId }) => {
     resolver: yupResolver(validationSchema(t))
   });
 
-  useEffect(() => {
-    console.log('getValues', getValues());
-    console.log('errors', errors);
-  });
   // Set the values to the fetched ones (in case the tenant already exists)
   useEffect(() => {
-    if (!tenant) {
-      return;
-    }
-
     setValue('name', tenant.name);
     setValue('listingId', listingId);
   }, [tenant, listingId, setValue]);
-
-  const queryClient = useQueryClient();
 
   const createNewTenantMutation = useMutation({
     mutationFn: (listing) => {
@@ -110,13 +110,14 @@ const TenantForm = ({ listingId }) => {
   });
 
   const handleOnError = (error) => {
-    toast(`error: ${JSON.stringify(error)}`);
+    toast(error?.response?.data?.error || 'Unhandled error');
   };
 
   const onSubmit = (values) => {
     // Trigger a POST to save the new tenancy
     createNewTenantMutation.mutate(values, {
       onSuccess: async (data) => {
+        setTenant(data);
         await queryClient.invalidateQueries(['listings']);
         await queryClient.invalidateQueries(['listing', data.id]);
       },
@@ -127,12 +128,12 @@ const TenantForm = ({ listingId }) => {
   const onError = (error) => handleOnError(error);
 
   if (isLoading || isError) {
-    return 'loading or err';
+    return;
   }
 
   return (
     <>
-      <h1>{t('TenantForm.createNew')}</h1>
+      <h3>{t('TenantForm.updateTenantInfo')}</h3>
       <div>
         {createNewTenantMutation.isLoading
           ?
@@ -190,7 +191,9 @@ const TenantForm = ({ listingId }) => {
               </InputRow>
             </div>
             <input type="hidden" name="listingId" />
-            <button type="submit" disabled={!isValid}>{tenant.name ? t('TenantForm.update') : t('TenantForm.add')}</button>
+            <button type="submit" disabled={!isValid || !isDirty || createNewTenantMutation.isLoading}>
+              {tenant.name ? t('TenantForm.update') : t('TenantForm.add')}
+            </button>
           </FormWrapper>
         }
       </div>

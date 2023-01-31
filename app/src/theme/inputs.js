@@ -4,7 +4,9 @@ export const InputStyle = (colors) => css`
     :root {
         --text-decoration-color: ${colors.gray400};
         --text-color: ${colors.superPastelGreen};
+        --focus-ring: 0 0 0 0.2rem ${colors.green500};
         --focus-ring-color: ${colors.green500};
+        --primary-color:${colors.green500};
     }
 
     /* Form ––––––––––––––––––––––––––––––––– */
@@ -214,7 +216,8 @@ export const InputStyle = (colors) => css`
     }
 
     // Override primefaces css because the free version doesn't allow for custom css
-    .p-inputtext {
+    .p-inputtext,
+    input {
         &:enabled:hover {
             border-color: ${colors.green500};
         }

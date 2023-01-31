@@ -153,6 +153,7 @@ const ListingForm = () => {
             errors={errors}
             schema={errors}
             register={register}
+            min="0"
           />
 
           <Input
@@ -162,6 +163,7 @@ const ListingForm = () => {
             errors={errors}
             schema={errors}
             register={register}
+            min="0"
           />
 
           <Checkbox

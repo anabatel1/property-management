@@ -22,12 +22,9 @@ tenantsRouter.post('/', async (request, response) => {
   const body = request.body
 
   if (!body.name || !body.name.trim() ||
-    !body.price ||
-    !body.startDate || !body.startDate.trim() ||
-    !body.endDate || !body.endDate.trim() ||
     !request?.listing?.id
   ) {
-    return response.status(400).json({ error: 'Some tenant data or listing id are missing' })
+    return response.status(400).json({ error: 'Tenant name or listing id are missing' })
   }
 
   const listing = request.listing

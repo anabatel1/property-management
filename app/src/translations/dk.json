@@ -93,7 +93,7 @@
         "validation": {
             "tenantNameRequired": "Lejers navn påkrævet"
         },
-        "createNew": "Tilføj en lejer",
+        "updateTenantInfo": "Opdater lejeroplysninger",
         "tenantName": "Lejers navn",
         "name": "Navn",
         "price": "Pris / måned",

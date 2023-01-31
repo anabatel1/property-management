@@ -93,7 +93,7 @@
         "validation": {
             "tenantNameRequired": "Tenant name required"
         },
-        "createNew": "Add a tenant",
+        "updateTenantInfo": "Update tenant info",
         "tenantName": "Tenant name",
         "name": "Name",
         "price": "Price / month",

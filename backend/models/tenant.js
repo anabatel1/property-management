@@ -3,21 +3,16 @@ const mongoose = require('mongoose')
 const tenantSchema = new mongoose.Schema({
   name: {
     type: String,
-    minLength: 3,
     required: true,
   },
   price: {
     type: Number,
-    minLength: 3,
-    required: true,
   },
   startDate: {
     type: Date,
-    required: true,
   },
   endDate: {
     type: Date,
-    required: true,
   },
   // A tenant can be renting out only one apartment (for now)
   listing: {

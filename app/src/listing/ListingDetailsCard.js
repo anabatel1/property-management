@@ -89,7 +89,6 @@ const ListingPropTypes = {
 
 ListingDetailsCard.propTypes = {
   listing: PropTypes.shape(ListingPropTypes),
-  confirmDelete: PropTypes.func,
   handleDeleteButton: PropTypes.func
 };
 
