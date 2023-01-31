@@ -1,5 +1,4 @@
 import { PropTypes } from 'prop-types';
-import { StyledSelect } from '../common/forms';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 
@@ -8,7 +7,7 @@ const languages = {
   dk: { nativeName: 'Dansk' }
 };
 
-const LanguageSelect = styled(StyledSelect)`
+const LanguageSelect = styled.select`
   width: 40%;
 
   @media ${props => props.theme.device.md} {

@@ -1,5 +1,4 @@
-import { StyledErrorMessage, StyledLabel,
-  StyledSelect, hasErrorMessages, isRequired
+import { StyledErrorMessage, StyledLabel, hasErrorMessages, isRequired
 } from './Fields';
 import { ErrorMessage } from '@hookform/error-message';
 import { PropTypes } from 'prop-types';
@@ -12,7 +11,7 @@ export const Select = forwardRef(function({
   return (
     <>
       <StyledLabel htmlFor={id || name}>{label} {isRequired(schema, name) && '*'}</StyledLabel>
-      <StyledSelect
+      <select
         ref={ref}
         label={label}
         name={name}

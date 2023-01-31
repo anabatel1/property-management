@@ -55,7 +55,7 @@ const defaultFormValues = {
 };
 
 const ListingForm = () => {
-  const [listingType, setListingType] = useState('room');
+  const [listingType, setListingType] = useState(defaultFormValues.type);
 
   const { t } = useTranslation();
 

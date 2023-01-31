@@ -18,14 +18,6 @@ export const hasErrorMessages = (errors, name) => !!(errors && errorMessages(err
 // Find from schema if the field is required
 export const isRequired = (schema, name) => schema?.fields?.[name]?.exclusiveTests?.required ?? false;
 
-export const StyledSelect = styled.select`
-  width: 100%;
-
-  @media ${props => props.theme.device.md} {
-    width: 45%;
-  }
-`;
-
 export const StyledErrorMessage = styled.div`
   font-size: 12px;
   color: ${props => props.theme.colors.errorBright};
@@ -41,14 +33,6 @@ export const StyledLabel = styled.label`
 `;
 
 export const StyledInput = styled.input`
-  @media ${props => props.theme.device.sm} {
-    width: 100%;
-  }
-
-  @media ${props => props.theme.device.md} {
-    width: 45%;
-  }
-
   &[aria-invalid=true] {
     &:focus {
       border-color: ${props => props.theme.colors.errorBright};
@@ -58,12 +42,4 @@ export const StyledInput = styled.input`
 
 export const StyledButton = styled.button`
   display: block;
-
-  @media ${props => props.theme.device.sm} {
-    width: 100%;
-  }
-
-  @media ${props => props.theme.device.md} {
-    width: 45%;
-  }
 `;
