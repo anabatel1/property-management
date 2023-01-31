@@ -14,7 +14,7 @@ const Footer = () => {
   return (
     <FooterWrapper>
       <div>
-        <h5>{t('propertyManagement')}</h5>
+        <h5>{t('propertyManagement')} | 2023 | Ana B</h5>
       </div>
     </FooterWrapper>
   );
