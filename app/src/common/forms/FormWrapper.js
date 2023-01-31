@@ -7,6 +7,8 @@ export const OuterListingFormWrapper = styled.div`
 
   ${listingColors}
 
+  transition: background-color 0.5s;
+
   .mt-1 {
     margin-top: 1rem;
   }
