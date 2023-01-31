@@ -1,24 +1,25 @@
 import * as Yup from 'yup';
 import { Checkbox, Input, Select } from '../common/forms';
+import { useEffect, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import AddressInfo from './AddressInfo';
 import FeedbackAnimation from '../common/animations';
+import { OuterListingFormWrapper as FormSectionWrapper } from '../common/forms/FormWrapper';
 import { LISTING_TYPES } from '../listing';
 import { MIN_ADDRESS_LENGTH } from './hooks';
 import services from '../services';
+import styled from 'styled-components';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-/**
- * IMPORTANT FOR NESTED ELEMENTS IN THE FORM!!!!!!!
- *
- * register("firstName")	{firstName: 'value'}
- * register("name.firstName")	{name: { firstName: 'value' }}
- * register("name.firstName.0")	{name: { firstName: [ 'value' ] }}
- */
+const FormWrapper = styled.form`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+`;
 
 const validationSchema = (t) => Yup.object({
   address: Yup.string()
@@ -54,6 +55,8 @@ const defaultFormValues = {
 };
 
 const ListingForm = () => {
+  const [listingType, setListingType] = useState('room');
+
   const { t } = useTranslation();
 
   const navigate = useNavigate();
@@ -77,11 +80,17 @@ const ListingForm = () => {
       isSubmitSuccessful,
     },
   } = useForm({
-    mode: 'onSubmit',
+    mode: 'onChange',
     delayError: 500,
     defaultValues: defaultFormValues,
     resolver: yupResolver(validationSchema(t))
   });
+
+  const watchType = watch('type', '');
+
+  useEffect(() => {
+    setListingType(watchType);
+  }, [watchType]);
 
   const onSubmit = (data) => {
     // Trigger a POST to save the new tenancy
@@ -104,83 +113,85 @@ const ListingForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit, onError)}>
-      {createNewListingMutation.isLoading
-        ? (
-          <FeedbackAnimation feedbackType="loading" />
-        )
-        :
-        <>
-          <Input
-            name="title"
-            label={t('listingForm.listingTitle')}
-            placeholder={t('listingForm.placeholder.title')}
-            errors={errors}
-            schema={validationSchema(t)}
-            register={register}
-          />
+    <FormSectionWrapper className={listingType}>
+      <FormWrapper onSubmit={handleSubmit(onSubmit, onError)}>
+        {createNewListingMutation.isLoading
+          ? (
+            <FeedbackAnimation feedbackType="loading" />
+          )
+          :
+          <>
+            <Input
+              name="title"
+              label={t('listingForm.listingTitle')}
+              placeholder={t('listingForm.placeholder.title')}
+              errors={errors}
+              schema={validationSchema(t)}
+              register={register}
+            />
 
-          <Input
-            name="address"
-            label={t('address')}
-            placeholder="Skelbækgade 2, 2. sal, 1717 København V"
-            errors={errors}
-            schema={validationSchema(t)}
-            register={register}
-          />
+            <Input
+              name="address"
+              label={t('address')}
+              placeholder="Skelbækgade 2, 2. sal, 1717 København V"
+              errors={errors}
+              schema={validationSchema(t)}
+              register={register}
+            />
 
-          <AddressInfo name="addressInfo" watch={watch} setValue={setValue} />
-          <input type="hidden" name="addressId" />
-          <input type="hidden" name="addressDetails" />
+            <AddressInfo name="addressInfo" watch={watch} setValue={setValue} />
+            <input type="hidden" name="addressId" />
+            <input type="hidden" name="addressDetails" />
 
-          <Select
-            name="type"
-            label={t('listingType')}
-            errors={errors}
-            schema={validationSchema(t)}
-            register={register}
-          >
-            <option value="" key="">{t('listingType')}</option>
-            {Object.keys(LISTING_TYPES).map((type) => (
-              <option value={type} key={type}>{t(`type.${type}`)}</option>
-            ))}
-          </Select>
+            <Select
+              name="type"
+              label={t('listingType')}
+              errors={errors}
+              schema={validationSchema(t)}
+              register={register}
+            >
+              <option value="" key="">{t('listingType')}</option>
+              {Object.keys(LISTING_TYPES).map((type) => (
+                <option value={type} key={type}>{t(`type.${type}`)}</option>
+              ))}
+            </Select>
 
-          <Input
-            name="size"
-            type="number"
-            label={t('listingForm.placeholder.size')}
-            errors={errors}
-            schema={errors}
-            register={register}
-            min="0"
-          />
+            <Input
+              name="size"
+              type="number"
+              label={t('listingForm.placeholder.size')}
+              errors={errors}
+              schema={errors}
+              register={register}
+              min="0"
+            />
 
-          <Input
-            name="rooms"
-            type="number"
-            label={t('listingForm.placeholder.rooms')}
-            errors={errors}
-            schema={errors}
-            register={register}
-            min="0"
-          />
+            <Input
+              name="rooms"
+              type="number"
+              label={t('listingForm.placeholder.rooms')}
+              errors={errors}
+              schema={errors}
+              register={register}
+              min="0"
+            />
 
-          <Checkbox
-            name="acceptedAddress"
-            id="accepted"
-            label={t('listingForm.placeholder.rooms')}
-            errors={errors}
-            schema={errors}
-            register={register}
-          >
-            {t('listingForm.confirmAddress')}
-          </Checkbox>
+            <Checkbox
+              name="acceptedAddress"
+              id="accepted"
+              label={t('listingForm.placeholder.rooms')}
+              errors={errors}
+              schema={errors}
+              register={register}
+            >
+              {t('listingForm.confirmAddress')}
+            </Checkbox>
 
-          <button type="submit">{t('listingForm.create')}</button>
-        </>
-      }
-    </form>
+            <button type="submit">{t('listingForm.create')}</button>
+          </>
+        }
+      </FormWrapper>
+    </FormSectionWrapper>
   );
 };
 

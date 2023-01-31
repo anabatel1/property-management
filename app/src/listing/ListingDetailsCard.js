@@ -1,25 +1,10 @@
 import ListingDetailsAddress from './ListingDetailsAddress';
 import ListingDetailsMap from './ListingDetailsMap';
+import { OuterListingFormWrapper } from '../common/forms/FormWrapper';
 import { PropTypes } from 'prop-types';
 import TenantForm from '../tenantForm';
-import { listingColors } from '../common/listing/colors';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-
-const ListingDetailsWrapper = styled.div`
-  padding: 1rem;
-  border-radius: 10px;
-
-  ${listingColors}
-
-  .mt-1 {
-    margin-top: 1rem;
-  }
-
-  @media ${props => props.theme.device.md} {
-    padding: 5rem;
-  }
-`;
 
 const ListingDetailsTitle = styled.h2`
   color: ${props => props.theme.colors.error};
@@ -54,7 +39,7 @@ const ListingDetailsCard = ({ listing, handleDeleteButton }) => {
   const { t } = useTranslation();
 
   return (
-    <ListingDetailsWrapper className={listing.type}>
+    <OuterListingFormWrapper className={listing.type}>
       <ListingHeader>
         <ListingDetailsTitle>{listing.title}</ListingDetailsTitle>
         <button onClick={handleDeleteButton}>{t('listingDetails.delete')}</button>
@@ -64,7 +49,7 @@ const ListingDetailsCard = ({ listing, handleDeleteButton }) => {
         <ListingDetailsMap addressId={listing?.addressId} />
       </FlexWrapper>
       <TenantForm listingId={listing?.id} />
-    </ListingDetailsWrapper>
+    </OuterListingFormWrapper>
   );
 };
 
