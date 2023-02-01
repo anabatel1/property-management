@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 const LinkStyle = () => css`
   text-decoration: none;
   line-height: 1.5rem;
-  transition: all 0.3s ease-in-out;
+  transition: border-bottom 0.3s ease-in-out, color 0.3s ease-in-out;
   border-bottom: 3px transparent solid;
   display: inline-block;
   font-weight: bold;
@@ -19,6 +19,7 @@ const LinkStyle = () => css`
   }
 
   &:hover {
+    will-change: border-bottom, color;
     color: ${props => props.theme.colors.darkerTanCrayola};
     border-bottom: 3px ${props => props.theme.colors.darkerTanCrayola} solid;
   }
