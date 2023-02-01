@@ -6,16 +6,11 @@ import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 
 const ListingCardLink = styled(Link)`
-  display: flex;
-  flex-direction: column;
   text-decoration: none;
   transition: all 0.3s ease-in-out;
   padding: 1.5rem;
   border-radius: 10px;
   color: ${props => props.theme.colors.linkColor};
-  
-  flex: 1;
-  min-width: 300px;
 
   &:hover {
     opacity: 0.8;

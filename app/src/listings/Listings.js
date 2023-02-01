@@ -9,10 +9,10 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
   gap: 10px;
-  flex-direction: row;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 `;
 
 const Listings = () => {
