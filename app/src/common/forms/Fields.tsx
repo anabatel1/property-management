@@ -16,7 +16,7 @@ export const errorMessages = (errors, name) => get(errors, name);
 export const hasErrorMessages = (errors, name) => !!(errors && errorMessages(errors, name));
 
 // Find from schema if the field is required
-export const isRequired = (schema, name) => schema?.fields?.[name]?.exclusiveTests?.required ?? false;
+export const isRequired = (schema: Object, name: string) => schema?.fields?.[name]?.exclusiveTests?.required ?? false;
 
 export const StyledErrorMessage = styled.div`
   font-size: 12px;
@@ -43,3 +43,13 @@ export const StyledInput = styled.input`
 export const StyledButton = styled.button`
   display: block;
 `;
+
+export interface FieldOptions {
+  label: string;
+  name: string;
+  id: string;
+  schema: string;
+  errors: string[];
+  initialValue: string;
+  setValue: Function;
+}

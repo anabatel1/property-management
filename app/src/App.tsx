@@ -6,7 +6,7 @@ import { MutationCache, QueryCache, QueryClient, QueryClientProvider } from '@ta
 import { Route, Routes, redirect } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { handleExpiredToken, isExpiredToken } from './login/hooks';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from './reducers/hooks';
 import { ContentWrapper } from './common/ContentWrapper';
 import Footer from './footer';
 import Header from './header';
@@ -22,8 +22,8 @@ import { useTranslation } from 'react-i18next';
 function App() {
   const { t } = useTranslation();
 
-  const user = useSelector(({ user }) => user);
-  const dispatch = useDispatch();
+  const user = useAppSelector(({ user }) => user);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedInUser');

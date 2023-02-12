@@ -1,15 +1,18 @@
-import { StyledErrorMessage, StyledLabel, hasErrorMessages, isRequired
-} from './Fields';
-import { Controller } from 'react-hook-form';
+import { Control, Controller, FieldValues } from 'react-hook-form';
+import { FieldOptions, StyledErrorMessage, StyledLabel, hasErrorMessages, isRequired } from './Fields';
 import { ErrorMessage } from '@hookform/error-message';
 import { Calendar as PrimeReactCalendar } from 'primereact/calendar';
-import { PropTypes } from 'prop-types';
-import { ReactHookFormPropTypes } from './ReactHookFormPropTypes';
 import { useEffect } from 'react';
+
+interface CalendarOptions extends FieldOptions {
+  register: Function;
+  children: JSX.Element;
+  control: Control<FieldValues>;
+}
 
 export const Calendar = ({
   label, name, id, schema, errors, control, initialValue, setValue, ...props
-}) => {
+}: CalendarOptions) => {
   useEffect(() => {
     setValue(name, initialValue ? new Date(initialValue) : null);
   }, [initialValue, setValue, name]);
@@ -20,7 +23,6 @@ export const Calendar = ({
       <Controller
         name={name}
         control={control}
-        label={label}
         render={({ field }) => (
           <PrimeReactCalendar
             id={field.name}
@@ -44,7 +46,3 @@ export const Calendar = ({
     </>
   );};
 Calendar.displayName = 'Calendar';
-Calendar.propTypes = {
-  ...ReactHookFormPropTypes,
-  type: PropTypes.string
-};

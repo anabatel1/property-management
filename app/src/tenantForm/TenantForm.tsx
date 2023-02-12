@@ -1,5 +1,6 @@
 import * as Yup from 'yup';
 import { Calendar, Input, PriceInput } from '../common/forms';
+import { DefaultValues, useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import FeedbackAnimation from '../common/animations';
@@ -7,7 +8,6 @@ import { PropTypes } from 'prop-types';
 import services from '../services';
 import styled from 'styled-components';
 import { toast } from 'react-toastify';
-import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -49,17 +49,26 @@ const validationSchema = (t) => Yup.object({
   endDate: Yup.date().nullable(),
 });
 
-const defaultFormValues = {
+const defaultFormValues: DefaultValues<FormValues> = {
   name: '',
   startDate: '',
   endDate: '',
+  listingId: '',
   price: 0,
 };
 
-const TenantForm = ({ listingId }) => {
+type FormValues = {
+  name: string;
+  startDate: string;
+  endDate: string;
+  price: number;
+  listingId: string;
+}
+
+const TenantForm = ({ listingId }: { listingId: string}) => {
   const { t } = useTranslation();
 
-  const [tenant, setTenant] = useState(defaultFormValues);
+  const [tenant, setTenant] = useState<FormValues>(defaultFormValues);
 
   const queryClient = useQueryClient();
 
@@ -90,7 +99,7 @@ const TenantForm = ({ listingId }) => {
       isValid,
       isDirty,
     },
-  } = useForm({
+  } = useForm<FormValues>({
     mode: 'onChange',
     delayError: 500,
     defaultValues: defaultFormValues,

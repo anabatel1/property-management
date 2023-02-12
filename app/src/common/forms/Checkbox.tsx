@@ -1,11 +1,16 @@
-import { StyledErrorMessage, hasErrorMessages, isRequired } from './Fields';
+import { FieldOptions, StyledErrorMessage, hasErrorMessages, isRequired } from './Fields';
 import { ErrorMessage } from '@hookform/error-message';
 import { ReactHookFormPropTypes } from './ReactHookFormPropTypes';
 import { forwardRef } from 'react';
 
+interface CheckboxOptions extends FieldOptions {
+  register: Function;
+  children: JSX.Element;
+}
+
 export const Checkbox = forwardRef(function({
   label, name, id, schema, errors, register, children, ...props
-}, ref) {
+}: CheckboxOptions, ref) {
   return (
     <>
       <label className="checkbox" htmlFor={id}>

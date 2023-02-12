@@ -56,7 +56,7 @@ const Listing = () => {
   );
 
   if (isLoading) {
-    return <FeedbackAnimation feedbackType="loading" />;
+    return <FeedbackAnimation />;
   }
 
   if (isError) {
