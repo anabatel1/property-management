@@ -161,7 +161,7 @@ const ListingForm = () => {
               type="number"
               label={t('listingForm.placeholder.size')}
               errors={errors}
-              schema={errors}
+              schema={validationSchema(t)}
               register={register}
               min="0"
             />
@@ -171,7 +171,7 @@ const ListingForm = () => {
               type="number"
               label={t('listingForm.placeholder.rooms')}
               errors={errors}
-              schema={errors}
+              schema={validationSchema(t)}
               register={register}
               min="0"
             />
@@ -181,7 +181,7 @@ const ListingForm = () => {
               id="accepted"
               label={t('listingForm.placeholder.rooms')}
               errors={errors}
-              schema={errors}
+              schema={validationSchema(t)}
               register={register}
             >
               {t('listingForm.confirmAddress')}
